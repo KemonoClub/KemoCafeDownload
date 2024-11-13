@@ -4,10 +4,10 @@ on:
   push:
     paths:
       - 'Posters_Test/**'
-      
+
 permissions:
   contents: write
-  
+
 jobs:
   resize_images:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
         if [ -n "$(git status --porcelain)" ]; then
           git add Posters_Test/
           git commit -m "画像を最大2048pxにリサイズ"
-          git push
+          git push origin HEAD:${{ github.ref_name }}
         else
           echo "リサイズする画像はありませんでした。"
         fi

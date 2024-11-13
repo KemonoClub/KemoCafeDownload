@@ -3,7 +3,7 @@ name: Resize Images
 on:
   push:
     paths:
-      - 'Posters/**'
+      - 'Posters_Test/**'
 
 jobs:
   resize_images:
@@ -18,7 +18,7 @@ jobs:
 
     - name: 画像のリサイズ
       run: |
-        find Posters/ -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0 | while IFS= read -r -d '' file; do
+        find Posters_Test/ -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0 | while IFS= read -r -d '' file; do
           dimensions=$(identify -format "%wx%h" "$file")
           width=${dimensions%x*}
           height=${dimensions#*x}
@@ -40,7 +40,7 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         if [ -n "$(git status --porcelain)" ]; then
-          git add Posters/
+          git add Posters_Test/
           git commit -m "画像を最大2048pxにリサイズ"
           git push
         else

@@ -47,6 +47,7 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         if [ -n "$(git status --porcelain)" ]; then
+          git pull origin ${{ github.ref_name }}
           git add Posters_Test/
           git commit -m "画像を最大2048pxにリサイズ"
           git push origin HEAD:${{ github.ref_name }}

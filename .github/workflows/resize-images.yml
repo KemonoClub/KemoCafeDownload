@@ -4,7 +4,10 @@ on:
   push:
     paths:
       - 'Posters_Test/**'
-
+      
+permissions:
+  contents: write
+  
 jobs:
   resize_images:
     runs-on: ubuntu-latest
